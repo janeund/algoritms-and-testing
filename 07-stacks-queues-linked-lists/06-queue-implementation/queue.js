@@ -3,38 +3,37 @@ class Queue {
     this.queue = [];
     this.head = 0;
     this.tail = 0;
-    this.maxSize = 100;
+    this.maxSize = 10;
   }
+
+  // tail| enqueue -> |4|3|2|1| -> dequeue |head
+  // first in first out
 
   enqueue(item) {
     if (this.isFull()) {
-      return false
-    } 
+      return false;
+    }
     this.queue[this.tail] = item;
-    this.tail++;
+    this.tail++
     return true;
   }
-
   dequeue() {
-    const item = this.queue[this.head];
+    let item = this.queue[this.head];
     this.head++;
     return item;
-  }
-
-  peek() {
-    return this.queue[this.head];
   }
 
   getLength() {
     return this.tail - this.head;
   }
-
-  isEmpty() {
-    return this.getLength === 0
-  }
-
   isFull() {
     return this.getLength() === this.maxSize;
+  }
+  isEmpty() {
+    return this.getLength() === 0;
+  }
+  peek() {
+    return this.queue[this.head];
   }
 }
 
